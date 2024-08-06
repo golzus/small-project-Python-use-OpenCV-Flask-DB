@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Logging Out</title>
+    <script type="text/javascript">
+        function closeWindow() {
+            // סגור את חלון הדפדפן
+            window.close();
+        }
+
+        window.onload = function() {
+            closeWindow();
+// הפנה את המשתמש לדף הבית לאחר סגירת החלון
+            setTimeout(function() {
+                window.location.href = "/";
+            }, 1000); // המתן שנייה לפני הפניה
+        };
+    </script>
+</head>
+<body>
+    <p>Logging out...</p>
+</body>
+</html>
