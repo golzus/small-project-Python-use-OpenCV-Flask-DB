@@ -9,12 +9,12 @@
 </head>
 <body>
     <h1>Analyze Image</h1>
-    <form action="{{ url_for('analizeImage') }}" method="post" enctype="multipart/form-data">
+    <form action="{{ url_for('analyzeImage') }}" method="post" enctype="multipart/form-data">
         <label for="file">Choose image to upload:</label>
         <input type="file" name="file" id="file">
         <button type="submit">Upload</button>
     </form>
-
+<a href="/logout">Logout</a>
     {% if filename %}
     <h2>Analysis Results</h2>
     <p>Number of faces detected: {{ num_faces }}</p>

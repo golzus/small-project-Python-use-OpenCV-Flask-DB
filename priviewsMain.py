@@ -1,13 +1,8 @@
-import signal
-import threading
 from flask import Flask, request, redirect, url_for, render_template
 import os
 import cv2
 import pathlib
 from pymongo import MongoClient
-import sys
-import webbrowser  # ייבוא הספרייה לפתיחת הדפדפן
-
 
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = 'static/uploads'
@@ -59,13 +54,10 @@ def login():
         if user:
             return redirect(url_for('analyzeImage'))
         else:
-            return render_template("login.html", error="Login failed: Invalid credentials")
+            return 'Login failed: Invalid credentials', 401
     return render_template("login.html")
 
 
-@app.route('/logout')
-def logout():
-     os._exit(1)
 @app.route('/analyzeImage', methods=['GET', 'POST'])
 def analyzeImage():
     if request.method == 'POST':
