@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<!--        <link rel="stylesheet" href="{{ url_for('static', filename='analizeImage.css') }}">-->
+
+    <title>Analyze Image</title>
+</head>
+<body>
+    <h1>Analyze Image</h1>
+    <form action="{{ url_for('analizeImage') }}" method="post" enctype="multipart/form-data">
+        <label for="file">Choose image to upload:</label>
+        <input type="file" name="file" id="file">
+        <button type="submit">Upload</button>
+    </form>
+
+    {% if filename %}
+    <h2>Analysis Results</h2>
+    <p>Number of faces detected: {{ num_faces }}</p>
+    <img src="{{ url_for('static', filename='uploads/' + filename) }}" alt="Uploaded Image">
+    <img src="{{ url_for('static', filename='uploads/processed_' + filename) }}" alt="Processed Image">
+    {% else %}
+    <p>{{ message }}</p>
+    {% endif %}
+</body>
+</html>
