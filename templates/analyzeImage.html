@@ -3,25 +3,124 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!--        <link rel="stylesheet" href="{{ url_for('static', filename='analizeImage.css') }}">-->
-
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='analyzeImage.css') }}">
     <title>Analyze Image</title>
+    <style>
+        body {
+            background-color: #240503; /* צבע רקע כהה */
+            color: #f8f9fa; /* צבע טקסט בהיר */
+            font-family: 'Arial', sans-serif;
+            overflow-x: hidden; /* מניעת גלישה אופקית */
+        }
+        .container {
+            margin-top: 60px;
+            padding: 30px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 90vw; /* הגבלת רוחב הטופס ל-90% מהמסך */
+            margin-left: auto;
+            margin-right: auto;
+        }
+        h1 {
+            color: #911b1b;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+        .btn-custom {
+            background-color: #911b1b;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 1rem;
+            display: inline-flex;
+            align-items: center;
+        }
+        .btn-custom:hover {
+            background-color: #721414;
+            text-decoration: none;
+        }
+        .btn-custom .icon {
+            margin-right: 8px;
+        }
+        .result-img {
+            width: 100%;
+            max-width: 45%; /* רוחב מקסימלי של 45% מהקונטיינר כדי להתאים לשתי תמונות יחד */
+            height: auto;
+            margin: 10px;
+            border: 3px solid #911b1b;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        }
+        .result-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: nowrap; /* תמונות זו לצד זו ללא שורות חדשות */
+            margin-top: 30px;
+            gap: 20px; /* רווח בין התמונות */
+            overflow: hidden; /* מניעת גלישה אופקית בתמונות */
+        }
+        .logout-link {
+            color: #911b1b;
+            font-size: 1rem;
+            display: block;
+            margin-top: 20px;
+            text-decoration: none;
+            font-weight: bold;
+            text-align: center;
+        }
+        .logout-link:hover {
+            text-decoration: underline;
+        }
+        .logout-link .icon {
+            margin-right: 8px;
+        }
+        .form-group label {
+            font-weight: bold;
+            color: #911b1b;
+        }
+        .form-control {
+            border-color: #911b1b;
+        }
+        .form-control:focus {
+            border-color: #721414;
+            box-shadow: 0 0 0 0.2rem rgba(113, 6, 6, 0.25);
+        }
+    </style>
 </head>
 <body>
-    <h1>Analyze Image</h1>
-    <form action="{{ url_for('analyzeImage') }}" method="post" enctype="multipart/form-data">
-        <label for="file">Choose image to upload:</label>
-        <input type="file" name="file" id="file">
-        <button type="submit">Upload</button>
-    </form>
-<a href="/logout">Logout</a>
-    {% if filename %}
-    <h2>Analysis Results</h2>
-    <p>Number of faces detected: {{ num_faces }}</p>
-    <img src="{{ url_for('static', filename='uploads/' + filename) }}" alt="Uploaded Image">
-    <img src="{{ url_for('static', filename='uploads/processed_' + filename) }}" alt="Processed Image">
-    {% else %}
-    <p>{{ message }}</p>
-    {% endif %}
+    <div class="container">
+        <h1 class="text-center">Analyze Image</h1>
+        <form action="{{ url_for('analyzeImage') }}" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="file">Choose image to upload:</label>
+                <div class="input-group">
+                    <input type="file" name="file" id="file" class="form-control">
+                    <div class="input-group-append">
+                        <span class="input-group-text"><i class="fas fa-upload"></i></span>
+                    </div>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-custom">
+                <i class="fas fa-cloud-upload-alt icon"></i> Upload
+            </button>
+        </form>
+        {% if filename %}
+            <h2 class="mt-4 text-center">Analysis Results</h2>
+            <p class="text-center">Number of faces detected: <strong>{{ num_faces }}</strong></p>
+            <div class="result-container">
+                <img src="{{ url_for('static', filename='uploads/' + filename) }}" alt="Uploaded Image" class="result-img">
+                <img src="{{ url_for('static', filename='uploads/processed_' + filename) }}" alt="Processed Image" class="result-img">
+            </div>
+            <a href="/logout" class="logout-link">
+                <i class="fas fa-sign-out-alt icon"></i> Logout
+            </a>
+        {% else %}
+            <p class="text-center">{{ message }}</p>
+        {% endif %}
+    </div>
 </body>
 </html>

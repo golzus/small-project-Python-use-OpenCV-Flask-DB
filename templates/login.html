@@ -3,19 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            background-color: #240503; /* Deep burgundy background color */
+            color: #f8f9fa; /* Light text color */
+            font-family: Arial, sans-serif;
+            margin-top: 60px; /* Space for fixed navigation bar */
+        }
+        .form-container {
+            max-width: 500px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #ffffff; /* White background for form */
+            border: 1px solid #911b1b;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .form-container h2 {
+            color: #911b1b;
+            margin-bottom: 20px;
+        }
+        .form-container label {
+            color: #911b1b;
+        }
+        .form-group {
+            position: relative;
+        }
+        .form-control {
+            padding-left: 40px; /* Leave space for the icon */
+            border: 1px solid #911b1b;
+            border-radius: 5px;
+        }
+        .form-control-icon {
+            position: absolute;
+            left: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #911b1b; /* Burgundy color */
+        }
+        .btn-custom {
+            background-color: #911b1b;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        .btn-custom:hover {
+            background-color: #721414;
+        }
+        .btn-link {
+            color: #911b1b;
+            font-size: 16px;
+        }
+        .btn-link:hover {
+            color: #721414;
+        }
+        .icon {
+            margin-right: 8px;
+        }
+    </style>
 </head>
 <body>
-    <h2>Login</h2>
-    <form action="/login" method="post">
-        <label for="login_firstname">First Name:</label>
-        <input type="text" id="login_firstname" name="login_firstname" required><br><br>
-        <label for="login_password">Password:</label>
-        <input type="password" id="login_password" name="login_password" required><br><br>
-        <input type="submit" value="Login">
-    </form>
-    {% if error %}
-    <p style="color:red;">{{ error }}</p>
-    {% endif %}
-    <a href="/logout">Logout</a>
+    <div class="container form-container">
+        <h2 class="text-center">Login</h2>
+        <form action="/login" method="post">
+            <div class="form-group">
+                <label for="login_firstname">First Name:</label>
+                <div class="form-control-wrapper">
+                    <i class="fas fa-user form-control-icon"></i>
+                    <input type="text" class="form-control" id="login_firstname" name="login_firstname" placeholder="First Name" required>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="login_password">Password:</label>
+                <div class="form-control-wrapper">
+                    <i class="fas fa-lock form-control-icon"></i>
+                    <input type="password" class="form-control" id="login_password" name="login_password" placeholder="Password" required>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-custom btn-block">
+                <i class="fas fa-sign-in-alt icon"></i> Login
+            </button>
+        </form>
+        {% if error %}
+        <p class="error-message text-center mt-3" style="color: #911b1b;">{{ error }}</p>
+        {% endif %}
+        <div class="text-center mt-3">
+            <a href="/register" class="btn btn-link">
+                <i class="fas fa-user-plus icon"></i> Register
+            </a>
+            <a href="/logout" class="btn btn-link">
+                <i class="fas fa-sign-out-alt icon"></i> Logout
+            </a>
+        </div>
+    </div>
 </body>
 </html>

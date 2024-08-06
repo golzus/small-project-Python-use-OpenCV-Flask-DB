@@ -2,16 +2,56 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="/static/welcome.css"/>
-    <title>Title</title>
+    <title>Welcome</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            background-color: #240503; /* צבע רקע כהה */
+            text-align: center;
+            color: #f8f9fa; /* צבע טקסט בהיר */
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .logo {
+            max-width: 400px; /* הגדלת הרוחב ב-200% */
+            height: auto; /* שמירה על פרופורציות התמונה */
+            margin-bottom: 30px;
+        }
+        .btn-custom {
+            background-color: #911b1b;
+            color: white;
+            margin: 10px;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+        }
+        .btn-custom:hover {
+            background-color: #721414;
+        }
+        .btn-custom .icon {
+            margin-right: 8px;
+        }
+    </style>
 </head>
 <body>
-<img src="./static/images/logo.png">
-
-<a href="{{ url_for('register')}}">
-register</a>
-<a href="{{ url_for('login')}}">
-login</a>
-<!-- <a href="/logout">Logout</a>-->
+    <div class="container">
+        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo" class="logo">
+        <div>
+            <a href="{{ url_for('register') }}" class="btn btn-custom">
+                <i class="fas fa-user-plus icon"></i> Register
+            </a>
+            <a href="{{ url_for('login') }}" class="btn btn-custom">
+                <i class="fas fa-sign-in-alt icon"></i> Login
+            </a>
+            <!-- <a href="/logout" class="btn btn-custom">
+                <i class="fas fa-sign-out-alt icon"></i> Logout
+            </a> -->
+        </div>
+    </div>
 </body>
 </html>
