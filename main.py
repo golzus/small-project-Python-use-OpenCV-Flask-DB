@@ -65,7 +65,8 @@ def login():
 
 @app.route('/logout')
 def logout():
-     os._exit(1)
+    # הפנייה לדף logout שמבצע סגירה של הדפדפן
+    return render_template('logout.html')
 @app.route('/analyzeImage', methods=['GET', 'POST'])
 def analyzeImage():
     if request.method == 'POST':
