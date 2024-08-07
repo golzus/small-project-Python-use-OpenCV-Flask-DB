@@ -1,0 +1,124 @@
+/* קובץ CSS עבור עיצוב הממשק */
+
+/* הגדרת גלילה רק למעלה ולמטה */
+html, body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden; /* מניעת גלילה אופקית */
+}
+
+/* מחלקה לתצוגה ראשית */
+.main-container {
+    display: grid;
+    grid-template-rows: auto auto auto; /* שלוש שורות: כותרות, גרפים, div ריקים */
+    grid-template-columns: 1fr; /* עמודה אחת לתצוגה הכוללת */
+    background-color: #2c3e50;
+    padding: 10px;
+    font-family: Arial, sans-serif;
+    overflow-x: hidden; /* מניעת גלילה אופקית */
+}
+
+/* מחלקה לכותרת העליונה */
+.header-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* שלוש עמודות ברוחב שווה */
+    gap: 10px; /* מרווח בין העמודות */
+    padding: 10px;
+    background-color: #34495e;
+    color: white;
+    border-radius: 5px;
+    box-sizing: border-box; /* כולל את הריפוד בגובה הכללי */
+}
+
+/* מחלקה לתצוגת מדד */
+.metric-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #3d566e; /* צבע אחורי בהיר יותר */
+    border-radius: 20px;
+    padding: 10px; /* הוספת ריפוד בתוך התיבה */
+    box-sizing: border-box; /* כולל את הריפוד בגובה הכללי */
+    overflow: hidden; /* למנוע חריגה מתוך התיבה */
+}
+
+.metric-title {
+    font-size: 18px;
+    margin-bottom: 5px;
+}
+
+.metric-value {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* מחלקה לתצוגת הגרפים */
+.charts-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* עמודות רספונסיביות */
+    gap: 10px; /* מרווח בין הגרפים */
+    margin-top: 10px;
+}
+
+/* עיצוב כללי עבור כל הגרפים */
+.pie-chart,.image-container, .bar-chart, .count-people-chart, .general-pie-chart, .line-chart {
+    height: 40vh; /* גובה של 40% מגובה החלון */
+    background-color: slategray; /* צבע אפור מבריק */
+    border-radius: 5px;
+    padding: 2px;
+    box-sizing: border-box; /* כולל את הריפוד בגובה הכללי */
+    overflow: hidden; /* למנוע גלילה בתוך הגרף */
+}
+
+/* מחלקה לתצוגת תמונות */
+.bottom-charts-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* עמודות רספונסיביות */
+    gap: 10px; /* מרווח בין ה-div */
+    margin-top: 10px;
+}
+
+
+
+.image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* התמונה תכסה את כל ה-div */
+    border-radius: 5px; /* זה גם שומר על גבולות התמונה עם עיגול פינות */
+}
+
+
+
+/* עיצוב גרפים קווים */
+.line-chart,.image-container {
+    height: 30vh; /* גובה של 30% מגובה החלון */
+}
+
+/* עיצוב רספונסיבי */
+@media (max-width: 768px) {
+    .header-container {
+        grid-template-columns: 1fr; /* עמודה אחת במכשירים קטנים */
+        grid-template-rows: repeat(3, auto); /* שלוש שורות במכשירים קטנים */
+        text-align: center; /* מרכז את הטקסט במכשירים קטנים */
+    }
+
+    .metric-title, .metric-value {
+        font-size: 14px; /* גודל פונט קטן יותר במכשירים קטנים */
+    }
+
+    .metric-container {
+        margin: 2px; /* מרווח קטן יותר בין מדדים */
+    }
+
+    .charts-container, .bottom-charts-container {
+        grid-template-columns: 1fr; /* עמודה אחת במכשירים קטנים */
+    }
+
+    .pie-chart, .bar-chart, .count-people-chart, .general-pie-chart, .line-chart {
+        height: 30vh; /* גובה קטן יותר במכשירים קטנים */
+    }
+
+    .image-container {
+        height: 25vh; /* גובה קטן יותר במכשירים קטנים */
+    }
+}
