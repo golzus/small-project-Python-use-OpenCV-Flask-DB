@@ -2,7 +2,7 @@ import pandas as pd
 import plotly.express as px
 
 def create_line_chart():
-    df = pd.read_excel('excelsFiles/excelPerAge.xlsx', engine='openpyxl')
+    df = pd.read_excel('static/excelsFiles/excelPerAge.xlsx', engine='openpyxl')
     fig = px.line(df, x='age ranges', y=['women', 'men'], labels={'value':'Count', 'variable':'Gender'})
     fig.update_layout(
     annotations=[

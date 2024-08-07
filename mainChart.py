@@ -18,11 +18,11 @@ def calculate_metrics(df):
     max_people_hour = df.iloc[0, 2]
     return total_people, avg_people, max_people_hour
 
-df = load_data('excelsFiles/excelLoadsPerHours.xlsx')
+df = load_data('static/excelsFiles/excelLoadsPerHours.xlsx')
 column_names = df.columns[1:]
-bar_df = load_data('excelsFiles/excelLoadsColors.xlsx')
-count_people_df = load_data('excelsFiles/excelCountPeople.xlsx')
-general_pie_df = load_data('excelsFiles/excelCountGenerally.xlsx')
+bar_df = load_data('static/excelsFiles/excelLoadsColors.xlsx')
+count_people_df = load_data('static/excelsFiles/excelCountPeople.xlsx')
+general_pie_df = load_data('static/excelsFiles/excelCountGenerally.xlsx')
 
 total_people, avg_people, max_people_hour = calculate_metrics(count_people_df)
 
