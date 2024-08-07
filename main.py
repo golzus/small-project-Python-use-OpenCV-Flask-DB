@@ -52,11 +52,6 @@ def register():
         # עדכון קובץ ה-Excel
         file_path = 'static/excelsFiles/excelCountGenerally.xlsx'
         df = pd.read_excel(file_path)
-        print("Dataframe loaded from Excel:")
-        print(df)
-        print("fghjkjhgfd")
-        print(df.iloc[0, 1],"fgfhghg")
-        print("dfghjjhgfd")
         if gender == 'male':
             df.iloc[0, 1]=df.iloc[0, 1]+1
         elif gender == 'female':
@@ -93,7 +88,7 @@ def login():
 @app.route('/logout')
 def logout():
     print("User logged out")
-    os._exit(1)
+    return render_template("logout.html")
 
 
     # הפנייה לדף logout שמבצע סגירה של הדפדפן
