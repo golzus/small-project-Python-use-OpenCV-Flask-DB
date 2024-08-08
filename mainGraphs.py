@@ -4,6 +4,7 @@ import dash
 from dash import dcc, html
 from dash.dependencies import Input, Output
 import pandas as pd
+import plotly.express as px
 import graph
 import colorsChart as bar_graph
 import general_pie_chart
@@ -18,11 +19,18 @@ def calculate_metrics(df):
     max_people_hour = df.iloc[0, 2]
     return total_people, avg_people, max_people_hour
 
+# ודא שכל הנתיבים לקבצים נכונים
 df = load_data('static/excelsFiles/excelLoadsPerHours.xlsx')
 column_names = df.columns[1:]
 bar_df = load_data('static/excelsFiles/excelLoadsColors.xlsx')
 count_people_df = load_data('static/excelsFiles/excelCountPeople.xlsx')
 general_pie_df = load_data('static/excelsFiles/excelCountGenerally.xlsx')
+
+# בדיקה אם כל קובץ נטען בהצלחה
+print(df.head())
+print(bar_df.head())
+print(count_people_df.head())
+print(general_pie_df.head())
 
 total_people, avg_people, max_people_hour = calculate_metrics(count_people_df)
 
